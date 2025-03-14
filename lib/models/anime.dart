@@ -27,6 +27,11 @@ class _AnimeHomePageState extends State<AnimeHomePage> {
       title: 'Attack on titan',
       imagePath: 'assets/images/AttackOnTitan.jpg',
     ),
+    Anime(
+      title: "JoJo's Bizarre Adventure",
+      imagePath: 'assets/images/jojo.jpg',
+    ),
+    Anime(title: 'Demon Slayer', imagePath: 'assets/images/yaiba.png'),
   ];
 
   // ตัวอย่างข้อมูล Update
