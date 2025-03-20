@@ -55,7 +55,7 @@ class AnimeSection extends StatelessWidget {
                       MaterialPageRoute(
                         builder:
                             (context) => UpdateListPage(
-                              animes: animes, // ส่งตัวเต็ม
+                              animes: fullAnimes, // ส่งตัวเต็ม
                             ),
                       ),
                     );

@@ -1,4 +1,5 @@
 import 'package:aniview/page/anime_detail_page.dart';
+import 'package:aniview/page/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:aniview/models/anime.dart';
 
@@ -33,8 +34,16 @@ class PopularListPage extends StatelessWidget {
                   color: const Color(0xFF004F3C),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const TextField(
-                  style: TextStyle(color: Colors.white),
+                child: TextField(
+                  readOnly: true, // ไม่ให้พิมพ์ในหน้านี้
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SearchPage(animes: animes),
+                      ),
+                    );
+                  },
                   decoration: InputDecoration(
                     hintText: 'Search Anime',
                     hintStyle: TextStyle(color: Colors.white),
@@ -127,7 +136,12 @@ class PopularListPage extends StatelessWidget {
           if (index == 0) {
             Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
           } else if (index == 1) {
-            Navigator.pushNamed(context, '/browse');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SearchPage(animes: animes),
+              ),
+            );
           }
         },
         selectedItemColor: Colors.white,

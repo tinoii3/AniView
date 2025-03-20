@@ -1,4 +1,5 @@
 import 'package:aniview/page/anime_detail_page.dart';
+import 'package:aniview/page/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:aniview/models/anime.dart';
 import 'package:aniview/page/popular_list_page.dart';
@@ -59,7 +60,12 @@ class UpdateListPage extends StatelessWidget {
             if (index == 0) {
               Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
             } else if (index == 1) {
-              Navigator.pushNamed(context, '/browse');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SearchPage(animes: animes),
+                ),
+              );
             } else if (index == 2) {
               Navigator.push(
                 context,

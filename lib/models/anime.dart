@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:aniview/page/popular_list_page.dart';
+import 'package:aniview/page/search_page.dart';
 import 'package:aniview/widgets/anime_section.dart';
 import 'package:flutter/material.dart';
 
@@ -38,6 +39,12 @@ class AnimeHomePage extends StatefulWidget {
 
 class _AnimeHomePageState extends State<AnimeHomePage> {
   int _selectedIndex = 0;
+
+  List<Anime> get myAnimeList => [
+  ...popularAnimes,
+  ...updateAnimes,
+  ];
+
 
   // ตัวอย่างข้อมูล Popular
   final List<Anime> popularAnimes = [
@@ -235,10 +242,16 @@ class _AnimeHomePageState extends State<AnimeHomePage> {
                   color: Color(0xFF004F3C),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const TextField(
-                  style: TextStyle(
-                    color: Colors.white,
-                  ), // Set text color to white
+                child: TextField(
+                  readOnly: true, // ไม่ให้พิมพ์ในหน้านี้
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SearchPage(animes: myAnimeList),
+                      ),
+                    );
+                  },
                   decoration: InputDecoration(
                     hintText: 'Search Anime',
                     hintStyle: TextStyle(color: Colors.white),
@@ -277,14 +290,19 @@ class _AnimeHomePageState extends State<AnimeHomePage> {
           // ถ้าเป็น 2 ให้ไปหน้า Popular
 
           if (index == 1) {
-            Navigator.pushNamed(context, '/browse');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SearchPage(animes: myAnimeList),
+              ),
+            );
           } else if (index == 2) {
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder:
                     (context) => PopularListPage(
-                      animes: popularAnimes, // ส่งตัวเต็ม
+                      animes: popularAnimes// ส่งตัวเต็ม
                     ),
               ),
             );
