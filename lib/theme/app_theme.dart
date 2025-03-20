@@ -22,9 +22,20 @@ class AppTheme {
       // AppBar Theme
       appBarTheme: const AppBarTheme(
         backgroundColor: primaryColor,
+        iconTheme: IconThemeData(color: Colors.white, size: 30),
         titleTextStyle: TextStyle(
           fontWeight: FontWeight.bold,
           color: Colors.white,
+        ),
+      ),
+
+      tabBarTheme: const TabBarTheme(
+        labelColor: Colors.white,
+        unselectedLabelColor: Colors.white,
+        labelStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        unselectedLabelStyle: TextStyle(fontSize: 16),
+        indicator: UnderlineTabIndicator(
+          borderSide: BorderSide(width: 5, color: Colors.white),
         ),
       ),
 

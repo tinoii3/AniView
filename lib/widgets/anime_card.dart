@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:aniview/models/anime.dart';
-import 'package:aniview/page/anime_detail_page.dart';  // นำเข้า AnimeDetailPage
+import 'package:aniview/page/anime_detail_page.dart'; // นำเข้า AnimeDetailPage
 
 class AnimeCard extends StatelessWidget {
   final Anime anime;
+  final bool showTitle;
 
-  const AnimeCard({Key? key, required this.anime}) : super(key: key);
+  const AnimeCard({Key? key, required this.anime, this.showTitle = true})
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,8 @@ class AnimeCard extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AnimeDetailPage(anime: anime),  // ส่งข้อมูล anime
+              builder:
+                  (context) => AnimeDetailPage(anime: anime), // ส่งข้อมูล anime
             ),
           );
         },
@@ -39,14 +42,15 @@ class AnimeCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             // ชื่ออนิเมะ
-            SizedBox(
-              width: 100,
-              child: Text(
-                anime.title,
-                style: const TextStyle(fontSize: 15),
-                overflow: TextOverflow.ellipsis,
+            if (showTitle)
+              SizedBox(
+                width: 100,
+                child: Text(
+                  anime.title,
+                  style: const TextStyle(fontSize: 15),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
-            ),
           ],
         ),
       ),

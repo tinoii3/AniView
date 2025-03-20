@@ -1,5 +1,6 @@
 import 'package:aniview/models/anime.dart';
-import 'package:aniview/page/list_page.dart';
+import 'package:aniview/page/popular_list_page.dart';
+import 'package:aniview/page/update_list_page.dart';
 import 'package:aniview/widgets/anime_card.dart';
 import 'package:flutter/material.dart';
 
@@ -36,15 +37,29 @@ class AnimeSection extends StatelessWidget {
               // ใช้ TextButton แทน Text
               TextButton(
                 onPressed: () {
-                  // กดแล้วไปหน้า AnimeListPage
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder:
-                          (context) =>
-                              AnimeListPage(title: title, animes: fullAnimes),
-                    ),
-                  );
+                  // ถ้าเป็น Popular -> ไปหน้า PopularListPage
+                  // ถ้าเป็น Update -> ไปหน้า UpdateListPage
+                  if (title == 'Popular') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) => PopularListPage(
+                              animes: fullAnimes, // ส่งตัวเต็ม
+                            ),
+                      ),
+                    );
+                  } else if (title == 'Update') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) => UpdateListPage(
+                              animes: animes, // ส่งตัวเต็ม
+                            ),
+                      ),
+                    );
+                  }
                 },
                 child: const Text(
                   'See All',
