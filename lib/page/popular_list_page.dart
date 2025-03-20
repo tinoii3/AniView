@@ -5,8 +5,13 @@ import 'package:aniview/models/anime.dart';
 
 class PopularListPage extends StatelessWidget {
   final List<Anime> animes;
+  final List<Anime> myAnimeList;
 
-  const PopularListPage({Key? key, required this.animes}) : super(key: key);
+  const PopularListPage({
+    Key? key,
+    required this.animes,
+    required this.myAnimeList,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +144,7 @@ class PopularListPage extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => SearchPage(animes: animes),
+                builder: (context) => SearchPage(animes: myAnimeList),
               ),
             );
           }

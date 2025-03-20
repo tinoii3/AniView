@@ -5,9 +5,16 @@ import 'package:aniview/models/anime.dart';
 import 'package:aniview/page/popular_list_page.dart';
 
 class UpdateListPage extends StatelessWidget {
-  final List<Anime> animes;
+  final List<Anime> updateAnimes;
+  final List<Anime> popularAnimes;
 
-  const UpdateListPage({Key? key, required this.animes}) : super(key: key);
+  List<Anime> get myAnimeList => [...popularAnimes, ...updateAnimes];
+
+  const UpdateListPage({
+    Key? key,
+    required this.updateAnimes,
+    required this.popularAnimes,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +46,13 @@ class UpdateListPage extends StatelessWidget {
         body: TabBarView(
           children: [
             // กรองอนิเมะให้เหลือเฉพาะวันนั้น ๆ
-            _buildGridView(_filterByDay(animes, 'Su')),
-            _buildGridView(_filterByDay(animes, 'M')),
-            _buildGridView(_filterByDay(animes, 'Tu')),
-            _buildGridView(_filterByDay(animes, 'W')),
-            _buildGridView(_filterByDay(animes, 'Th')),
-            _buildGridView(_filterByDay(animes, 'F')),
-            _buildGridView(_filterByDay(animes, 'Sa')),
+            _buildGridView(_filterByDay(updateAnimes, 'Su')),
+            _buildGridView(_filterByDay(updateAnimes, 'M')),
+            _buildGridView(_filterByDay(updateAnimes, 'Tu')),
+            _buildGridView(_filterByDay(updateAnimes, 'W')),
+            _buildGridView(_filterByDay(updateAnimes, 'Th')),
+            _buildGridView(_filterByDay(updateAnimes, 'F')),
+            _buildGridView(_filterByDay(updateAnimes, 'Sa')),
           ],
         ),
 
@@ -63,7 +70,7 @@ class UpdateListPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SearchPage(animes: animes),
+                  builder: (context) => SearchPage(animes: myAnimeList),
                 ),
               );
             } else if (index == 2) {
@@ -72,7 +79,8 @@ class UpdateListPage extends StatelessWidget {
                 MaterialPageRoute(
                   builder:
                       (context) => PopularListPage(
-                        animes: animes, // ส่งตัวเต็ม
+                        animes: popularAnimes,
+                        myAnimeList: myAnimeList, // ส่งตัวเต็ม
                       ),
                 ),
               );

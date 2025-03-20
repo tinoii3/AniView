@@ -8,12 +8,16 @@ class AnimeSection extends StatelessWidget {
   final String title;
   final List<Anime> animes;
   final List<Anime> fullAnimes;
+  final List<Anime> popularAnimes;
+  final List<Anime> updateAnimes;
 
   const AnimeSection({
     Key? key,
     required this.title,
     required this.animes,
     required this.fullAnimes,
+    required this.popularAnimes,
+    required this.updateAnimes,
   }) : super(key: key);
 
   @override
@@ -45,7 +49,8 @@ class AnimeSection extends StatelessWidget {
                       MaterialPageRoute(
                         builder:
                             (context) => PopularListPage(
-                              animes: fullAnimes, // ส่งตัวเต็ม
+                              animes: popularAnimes,
+                              myAnimeList: fullAnimes, // ส่งตัวเต็ม
                             ),
                       ),
                     );
@@ -55,7 +60,10 @@ class AnimeSection extends StatelessWidget {
                       MaterialPageRoute(
                         builder:
                             (context) => UpdateListPage(
-                              animes: fullAnimes, // ส่งตัวเต็ม
+                              updateAnimes:
+                                  updateAnimes, // <-- ส่ง updateAnimes
+                              popularAnimes:
+                                  popularAnimes, // <--- ส่ง popularAnimes ติดไปด้วย
                             ),
                       ),
                     );

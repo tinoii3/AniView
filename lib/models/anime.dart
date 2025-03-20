@@ -40,11 +40,7 @@ class AnimeHomePage extends StatefulWidget {
 class _AnimeHomePageState extends State<AnimeHomePage> {
   int _selectedIndex = 0;
 
-  List<Anime> get myAnimeList => [
-  ...popularAnimes,
-  ...updateAnimes,
-  ];
-
+  List<Anime> get myAnimeList => [...popularAnimes, ...updateAnimes];
 
   // ตัวอย่างข้อมูล Popular
   final List<Anime> popularAnimes = [
@@ -99,6 +95,17 @@ class _AnimeHomePageState extends State<AnimeHomePage> {
       author: 'Koyoharu Gotouge',
       publisher: 'Shueisha',
       firstPublished: '2016',
+      format: 'Manga / Anime',
+    ),
+    Anime(
+      title: "Frieren: Beyond Journey's End",
+      imagePath: 'assets/images/frieren.jpg',
+      description:
+          "During their decade-long quest to defeat the Demon King, the members of the hero's party—Himmel himself, the priest Heiter, the dwarf warrior Eisen, and the elven mage Frieren—forge bonds through adventures and battles, creating unforgettable precious memories for most of them.",
+      genres: ['Adventure', 'Drama', 'Fantasy'],
+      author: 'Yamada Kanehito',
+      publisher: 'Shogakukan',
+      firstPublished: '2020',
       format: 'Manga / Anime',
     ),
   ];
@@ -201,6 +208,42 @@ class _AnimeHomePageState extends State<AnimeHomePage> {
       format: 'Manga / Anime',
       day: 'Su',
     ),
+    Anime(
+      title: 'Detective Conan',
+      imagePath: 'assets/images/conan.jpg',
+      description:
+          'Shinichi Kudou, a high school student of astounding talent in detective work, is well known for having solved several challenging cases. One day, when Shinichi spots two suspicious men and decides to follow them, he inadvertently becomes witness to a disturbing illegal activity. Unfortunately, he is caught in the act, so the men dose him with an experimental drug formulated by their criminal organization, leaving him to his death. However, to his own astonishment, Shinichi lives to see another day, but now in the body of a seven-year-old child.',
+      genres: ['Adventure', 'Comedy', 'Mystery'],
+      author: 'Junichi Iioka',
+      publisher: 'Shogakukan',
+      firstPublished: '1994',
+      format: 'Manga / Anime',
+      day: 'M',
+    ),
+    Anime(
+      title: "I'm Getting Married to a Girl I Hate in My Class",
+      imagePath: 'assets/images/girl_hate.jpg',
+      description:
+          "There is only one person that high school student Saito Houjou truly cannot stand—and that is his temperamental classmate, Akane Sakuramori. The two have always been on bad terms; their contrasting views and personalities only lead to endless fighting. However, everything changes when Saito's grandfather and Akane's grandmother arrange a sudden meeting and insist that the two get married!",
+      genres: ['Comedy', 'Romance'],
+      author: 'Amano Seiju',
+      publisher: 'Kadokawa',
+      firstPublished: '2021',
+      format: 'Manga / Anime',
+      day: 'Tu',
+    ),
+    Anime(
+      title: "Unnamed Memory",
+      imagePath: 'assets/images/unname.jpg',
+      description:
+          "Once upon a time in a faraway land, a beautiful witch lived atop a tall tower with no intention of descending. Instead, she awaited the brave knight who would overcome many perils to meet her. Should someone triumph over her many traps, she would grant them any one wish. One day, such a courageous prince did arrive, and he asked her to rid him of the curse preventing him from siring an heir. But the curse of another witch cannot be so easily lifted, and the only way to save his bloodline... is to become his bride?!",
+      genres: ['Adventure', 'Fantasy', 'Romance'],
+      author: 'Furumiya Kuji ',
+      publisher: 'Shōsetsuka ni Narō',
+      firstPublished: '2012',
+      format: 'Manga / Anime',
+      day: 'W',
+    ),
   ];
 
   // ฟังก์ชันเปลี่ยนหน้า (Bottom Navigation)
@@ -267,14 +310,18 @@ class _AnimeHomePageState extends State<AnimeHomePage> {
             AnimeSection(
               title: 'Popular',
               animes: popularAnimes.take(3).toList(),
-              fullAnimes: popularAnimes,
+              fullAnimes: myAnimeList,
+              popularAnimes: popularAnimes,
+              updateAnimes: updateAnimes,
             ),
 
             // Section Update
             AnimeSection(
               title: 'Update',
               animes: updateAnimes,
-              fullAnimes: updateAnimes,
+              fullAnimes: myAnimeList,
+              popularAnimes: popularAnimes,
+              updateAnimes: updateAnimes,
             ),
           ],
         ),
@@ -302,7 +349,8 @@ class _AnimeHomePageState extends State<AnimeHomePage> {
               MaterialPageRoute(
                 builder:
                     (context) => PopularListPage(
-                      animes: popularAnimes// ส่งตัวเต็ม
+                      animes: popularAnimes,
+                      myAnimeList: myAnimeList, // ส่งตัวเต็ม
                     ),
               ),
             );
