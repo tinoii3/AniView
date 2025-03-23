@@ -15,8 +15,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'AniView',
       theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
       home: const AnimeHomePage(),
       debugShowCheckedModeBanner: false, // Disable debug banner
     );
